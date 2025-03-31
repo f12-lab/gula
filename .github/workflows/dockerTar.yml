@@ -27,7 +27,7 @@ jobs:
 
     - name: Guardar las imágenes en un solo archivo tar
       run: |
-        docker save -o pecados.tar dos:latest nginx:latest php:latest
+        docker save -o gula.tar dos:latest nginx:latest php:latest
 
     - name: Subir la imagen como artefacto
       uses: actions/upload-artifact@v4
