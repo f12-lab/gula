@@ -1,0 +1,55 @@
+# Usar Debian ligero como base
+FROM debian:bullseye-slim
+
+# Actualizar e instalar herramientas necesarias en una sola capa
+RUN apt-get update && apt-get install -y \
+    hping3 \
+    siege \
+    curl \
+    git \
+    iputils-ping \
+    python3 \
+    python3-pip \
+    python3-venv \
+    build-essential \
+    npm \
+    nmap \
+    tcpdump \
+    wget \
+    gcc && \
+    rm -rf /var/lib/apt/lists/*  # Limpiar caché de APT para reducir tamaño
+
+# Clonar repositorios
+WORKDIR /root
+RUN git clone https://github.com/gkbrk/slowloris.git && \
+    git clone https://github.com/sahilchaddha/rudyjs.git && \
+    git clone https://github.com/LimerBoy/Impulse.git && \
+    git clone https://github.com/C4PIT4L/TearDrop.git
+
+# Configurar Slowloris
+WORKDIR /root/slowloris
+RUN chmod +x slowloris.py
+
+# Instalar RudyJS globalmente
+RUN npm install -g rudyjs
+
+# Configurar Impulse
+WORKDIR /root/Impulse
+RUN python3 -m venv venv && \
+    /root/Impulse/venv/bin/pip install -r requirements.txt
+
+# Descargar y compilar DNSdrDos
+RUN mkdir /root/dnsdrdos
+WORKDIR /root/dnsdrdos
+RUN wget https://raw.githubusercontent.com/rodarima/lsi/master/p2/dnsdrdos.c && \
+    gcc dnsdrdos.c -o dnsdrdos.o -Wall -ansi
+
+# Configurar TearDrop
+WORKDIR /root/TearDrop
+RUN python3 -m venv venv && \
+    /root/TearDrop/venv/bin/pip install -r requirements.txt
+
+WORKDIR /root
+
+
+CMD ["tail", "-f", "/dev/null"]

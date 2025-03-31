@@ -1,0 +1,49 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    networks:
+      custom_network:
+        ipv4_address: 172.28.0.2
+    ports:
+      - 80:80
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"  
+          memory: "50M"
+    sysctls:
+      - net.ipv4.tcp_syncookies=0     
+      - net.ipv4.conf.all.rp_filter=0
+      - net.ipv4.conf.all.accept_redirects=1
+      - net.ipv4.conf.all.accept_source_route=1
+      - net.ipv4.tcp_max_syn_backlog=1024
+      - net.ipv4.tcp_fin_timeout=1
+      - net.ipv4.icmp_echo_ignore_all=0
+      - net.core.somaxconn=128
+      - net.ipv4.tcp_timestamps=1
+  php-fpm:
+    image: php-fpm:latest
+    container_name: php-fpm
+    networks:
+      custom_network:
+        ipv4_address: 172.28.0.3
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: "50M"
+
+  dos:
+    image: dos:latest
+    container_name: dos
+    networks:
+      custom_network:
+        ipv4_address: 172.28.0.4
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
