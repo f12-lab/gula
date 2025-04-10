@@ -238,7 +238,7 @@ image::assets/RUDY.jpg[RUDY]
 
 == Solucionar la máquina
 
-Vamos a ver cómo realizar ataques de denagación de servicios y cómo estos afectan a un servidor mal configurado. Aprenderemos principalmente cómo realizarlos y ver lo que ocurre en nuestra máquina.
+Vamos a ver en esta guía cómo realizar ataques de denagación de servicios y cómo estos afectan a un servidor mal configurado. Aprenderemos principalmente cómo realizarlos y ver lo que ocurre en nuestra máquina.
 
 Para ello utilizaremos varias herramientas que estarán disponibles en el contenedor *dos*:
 
@@ -254,6 +254,12 @@ Para ello utilizaremos varias herramientas que estarán disponibles en el conten
 Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.
 
 === Despliegue de la máquina
+
+Como requisito, necesitaremos tener instalado docker y docker-compose.
+
+Podemos ver como instalar docker para varias distribuciones de linux -> https://docs.docker.com/engine/install/[Instalar Docker]
+
+Podemos ver como instalar docker-compose para varias distribuciones de linux -> https://docs.docker.com/compose/install/linux/[Instalar Docker-Compose]
 
 En un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando. 
 
