@@ -250,7 +250,6 @@ Para ello utilizaremos varias herramientas que estarán disponibles en el conten
 * https://github.com/sahilchaddha/rudyjs[Rudyjs]
 * https://github.com/rodarima/lsi/blob/master/p2/dnsdrdos.c[dnsdrdos.c]
 
-
 Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.
 
 === Despliegue de la máquina
@@ -261,7 +260,7 @@ Podemos ver como instalar docker para varias distribuciones de linux -> https://
 
 Podemos ver como instalar docker-compose para varias distribuciones de linux -> https://docs.docker.com/compose/install/linux/[Instalar Docker-Compose]
 
-En un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando. 
+Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando. 
 
 (Si el auto_deploy no tiene permisos se los damos mediante *chmod +x*). 
 
@@ -1035,7 +1034,7 @@ Los ataques R.U.D.Y. (R-U-Dead-Yet?) son ataques bajos y lentos que intentan ago
 * *Implementar mecanismos de detección de tráfico anómalo* -> El monitoreo en tiempo real permite detectar patrones de comportamiento sospechosos, como múltiples conexiones que envían datos extremadamente despacio. Sistemas de prevención de intrusos (IPS) pueden ayudar a bloquear estos intentos.
 
 ----
-"Los usuarios son el eslabón más débil de cualquier sistema de seguridad"
+"Los usuarios son el eslabón más débil de cualquier sistema de seguridad."
 
 - Kevin Mitnick
 ----
