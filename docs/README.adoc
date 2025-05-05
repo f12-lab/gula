@@ -1,6 +1,5 @@
 = Gula
 :author: Manuel L. Quero
-:revdate: 2025-03-31
 :toc: left
 :doctype: book
 
