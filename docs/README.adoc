@@ -3,7 +3,24 @@
 :toc: left
 :doctype: book
 
-<<<
+== Despliegue de la máquina
+
+Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.
+
+Como requisito, necesitaremos tener instalado docker y docker-compose.
+
+Podemos ver como instalar docker para varias distribuciones de linux -> https://docs.docker.com/engine/install/[Instalar Docker]
+
+Podemos ver como instalar docker-compose para varias distribuciones de linux -> https://docs.docker.com/compose/install/linux/[Instalar Docker-Compose]
+
+Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando. 
+
+(Si el auto_deploy no tiene permisos se los damos mediante *chmod +x*). 
+
+[source,bash]
+----
+$ sudo bash auto_deploy.sh gula.tar
+----
 
 == Ataques DDoS y DoS
 
@@ -51,8 +68,7 @@ Una solicitud ICMP requiere algunos recursos del servidor para procesar cada sol
 
 . A continuación, el servidor objetivo envía un paquete de respuesta de eco de ICMP a la dirección IP de cada dispositivo solicitante como respuesta.
 
-[.text-center]
-image::assets/ping-icmp.png[ICMP flood]
+image::assets/ping-icmp.png[ICMP flood,align=center]
 
 ==== b. SYN Flood
 
@@ -60,8 +76,7 @@ En este caso se envian repetidamente paquetes de solicitud de conexión inicial 
 
 Este ataque aprovecha el proceso de las conexiones TCP. Como ya sabemos, en una situación normal se producen los siguientes procesos:
 
-[.text-center]
-image::assets/syn-flood-1.png[Conexión TCP]
+image::assets/syn-flood-1.png[Conexión TCP,align=center]
 
 En un ataque se aprovecha el hecho de que, después de que se ha recibido un paquete SYN inicial, el servidor responderá con uno o más paquetes SYN/ACK y esperará el paso final del protocolo de enlace. Así es como funciona:
 
@@ -71,8 +86,7 @@ En un ataque se aprovecha el hecho de que, después de que se ha recibido un paq
     
 . Mientras el servidor espera a que llegue el paquete ACK final, el cual nunca llegará, el atacante sigue enviando más paquetes SYN. La llegada de cada nuevo paquete SYN hace que el servidor mantenga temporalmente abierta una nueva conexión de puerto durante cierta cantidad de tiempo y, una vez que se hayan utilizado todos los puertos disponibles, el servidor ya no puede funcionar con normalidad, llevándolo a su sobrecarga.
 
-[.text-center]
-image::assets/syn-flood-2.png[SYN flood]
+image::assets/syn-flood-2.png[SYN flood,align=center]
 
 También hay varios formas de llevarlo a cabo:
 
@@ -92,8 +106,7 @@ De normal, un servidor responde a un paquete UDP enviado a uno de sus puertos de
 
 Entoces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.
 
-[.text-center]
-image::assets/udp-flood.png[UDP Flood]
+image::assets/udp-flood.png[UDP Flood,align=center]
 
 === 2. Ataques de Explotación de Vulnerabilidades
 
@@ -117,8 +130,7 @@ Este ataque se produce en 4 pasos:
 
 . El servidor objetivo nunca es capaz de liberar ninguna de las conexiones parciales abiertas mientras espera a que termine la solicitud. Una vez que todos los hilos disponibles están en uso, el servidor será incapaz de responder a las solicitudes adicionales realizadas desde el tráfico regular, provocando una denegación de servicio.
 
-[.text-center]
-image::assets/Slowloris.jpg[Slowloris]
+image::assets/Slowloris.jpg[Slowloris,align=center]
 
 ==== b. Teardrop Attack
 
@@ -130,8 +142,7 @@ Entonces durante un ataque Teardrop, el ciberdelincuente inyecta un error en el 
 
 Este ataque afectaba principalmente a sistemas antiguos como Windows 95, NT y algunas versiones de Linux
 
-[.text-center]
-image::assets/Teardrop.jpg[Teardrop]
+image::assets/Teardrop.jpg[Teardrop,align=center]
 
 ==== c. Ping of Death (PoD)
 
@@ -139,8 +150,7 @@ Este ataque es el precursos del *Ping flood* visto anteriormente. Consiste en el
 
 Estos paquetes son superior a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.
 
-[.text-center]
-image::assets/ping-of-death.png[PoD]
+image::assets/ping-of-death.png[PoD,align=center]
 
 === 3. Ataques de Amplificación y Reflexión
 
@@ -162,8 +172,7 @@ Este ataque se ejecuta de la siguiente manera:
 
 . La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve inundada por una avalancha de tráfico, produciendo la denegación de servicio.
 
-[.text-center]
-image::assets/dns-amplification.png[DNS Amplification]
+image::assets/dns-amplification.png[DNS Amplification,align=center]
 
 ==== b. NTP Amplification
 
@@ -181,8 +190,7 @@ Este ataque se realiza de la siguiente manera:
 
 . La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve sobrecargada por la avalancha de tráfico, con la consiguiente denegación de servicio.
 
-[.text-center]
-image::assets/ntp-amplification.png[NTP Amplification]
+image::assets/ntp-amplification.png[NTP Amplification,align=center]
 
 ==== c. Memcached Amplification
 
@@ -204,8 +212,7 @@ Un ataque basado en memcached se produce:
 
 Ejemplo de ataque mecached:
 
-[.text-center]
-image::assets/memcached-attack.png[Memcached]
+image::assets/memcached-attack.png[Memcached,align=center]
 
 === 4. Ataques Lógicos o de Estado
 
@@ -215,8 +222,7 @@ Estos ataques aprovechan la gestión de conexiones del sistema para hacer que lo
 
 La intención de este ataque es saturar un servidor objetivo con solicitudes HTTP, en la capa de aplicación. Normalmente se utilizan botnets para este tipo de ataques.
 
-[.text-center]
-image::assets/http-flood-attack.png[HTTP Flood]
+image::assets/http-flood-attack.png[HTTP Flood,align=center]
 
 Hay dos variantes:
 
@@ -242,10 +248,7 @@ Un ataque R.U.D.Y. se realiza en los siguientes pasos:
 
 . La herramienta sigue enviando datos de forma indefinida. El servidor web mantendrá la conexión abierta para aceptar los paquetes, ya que el comportamiento del ataque es similar al de un usuario con una velocidad de conexión lenta que envía datos de un formulario. Entretanto, se ve afectada la capacidad del servidor web para manejar el tráfico legítimo, por lo que termina saturándose.
 
-[.text-center]
-image::assets/RUDY.jpg[RUDY]
-
-<<<
+image::assets/RUDY.jpg[RUDY,align=center]
 
 == Solucionar la máquina
 
@@ -260,25 +263,6 @@ Para ello utilizaremos varias herramientas que estarán disponibles en el conten
 * https://github.com/LimerBoy/Impulse[Impulse]
 * https://github.com/sahilchaddha/rudyjs[Rudyjs]
 * https://github.com/rodarima/lsi/blob/master/p2/dnsdrdos.c[dnsdrdos.c]
-
-Sería conveniente utilizar una distribución Linux, es recomendable usar Kali Linux.
-
-=== Despliegue de la máquina
-
-Como requisito, necesitaremos tener instalado docker y docker-compose.
-
-Podemos ver como instalar docker para varias distribuciones de linux -> https://docs.docker.com/engine/install/[Instalar Docker]
-
-Podemos ver como instalar docker-compose para varias distribuciones de linux -> https://docs.docker.com/compose/install/linux/[Instalar Docker-Compose]
-
-Necesitaremos descargar primeramente el auto_deploy.sh, el cual se muestra como una pirámide en la página. Después en un directorio deberemos tener el auto_deploy.sh, gula.tar y docker-compose.yml, deberemos acceder con la terminal a dicho directorio y ejecutar el siguiente comando. 
-
-(Si el auto_deploy no tiene permisos se los damos mediante *chmod +x*). 
-
-[source,bash]
-----
-$ sudo bash auto_deploy.sh gula.tar
-----
 
 Tendremos tres imagenes, dos son del servidor y la otra es un entorno de ataque, donde están todas las herramientas configuradas y listas para usar. Si queremos usar este entorno, en una terminal ponemos:
 
@@ -317,7 +301,7 @@ En cuanto a acceder a la página, es recomendable crear un nuevo perfil en nuest
 |opera://settings/side-profiles-settings
 |===
 
-==== Nociones básicas
+=== Nociones básicas
 
 * *tcpdump* -> Es una herramienta de línea de comandos utilizada para capturar y analizar el tráfico de red en tiempo real. Permite inspeccionar los paquetes que circulan por una interfaz de red, filtrar tráfico específico por protocolos, direcciones IP o puertos, y visualizar detalles sobre las conexiones de red. Es útil para diagnosticar problemas de red, auditar la seguridad o estudiar el comportamiento de aplicaciones en la red.
 
@@ -370,8 +354,7 @@ Si ejecutamos el ataque y analizamos el tráfico desde el servidor Nginx con tcp
 $ tcpdump -i eth0 icmp
 ----
 
-[.text-center]
-image::assets/imagenes-vuln/1/Pingflood/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/1/Pingflood/tcpdump.png[Tcpdump,align=center]
 
 En los resultados, observamos que solo 481825 paquetes han sido capturados de un total de 7786662 paquetes filtrados, el resto ha sido descartado por el kernel.
 
@@ -379,8 +362,7 @@ Esto ocurre porque el sistema no puede manejar un volumen tan alto de paquetes, 
 
 *Monitoreo con docker stats*
 
-[.text-center]
-image::assets/imagenes-vuln/1/Pingflood/dockerstats.png[Dockerstats]
+image::assets/imagenes-vuln/1/Pingflood/dockerstats.png[Dockerstats,align=center]
 
 Al revisar docker stats durante el ataque, no se observan cambios significativos en el uso de recursos.
 
@@ -427,8 +409,7 @@ Para comprobar si el ataque ha tenido éxito, intentamos acceder a la IP del ser
 
 Es importante limpiar la caché del navegador o usar un perfil nuevo para evitar datos almacenados. (Esta recomendación puede incluirse en la parte de despliegue del documento).
 
-[.text-center]
-image::assets/imagenes-vuln/1/SYNflood/cargando.png[Cargando]
+image::assets/imagenes-vuln/1/SYNflood/cargando.png[Cargando,align=center]
 
 Como podemos ver, el servidor no responde y la página no carga. Esto indica que el ataque ha sido exitoso y está afectando la disponibilidad del servicio.
 
@@ -443,8 +424,7 @@ $ tcpdump -i any 'tcp[tcpflags] & (tcp-syn) != 0 and tcp[tcpflags] & (tcp-ack) =
 
 Esto indica que hay una gran cantidad de paquetes SYN intentando establecer conexiones, lo que reduce progresivamente la disponibilidad del servidor para aceptar clientes legítimos.
 
-[.text-center]
-image::assets/imagenes-vuln/1/SYNflood/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/1/SYNflood/tcpdump.png[Tcpdump,align=center]
 
 *Análisis del impacto con docker stats*
 
@@ -452,8 +432,7 @@ Al monitorear el servidor con docker stats, observamos un Net I/O de 4.68GB / 4.
 
 Esto sugiere que la carga de red es muy elevada, lo que aumenta las probabilidades de que algunos paquetes logren completar el handshake y consuman recursos del servidor.
 
-[.text-center]
-image::assets/imagenes-vuln/1/SYNflood/dockerstats.png[Dockerstats]
+image::assets/imagenes-vuln/1/SYNflood/dockerstats.png[Dockerstats,align=center]
 
 ==== c. UDP Flood
 
@@ -491,8 +470,7 @@ $ tcpdump -i any udp
 
 Esto indica que el ataque se está ejecutando correctamente y que los paquetes están llegando al servidor. Sin embargo, al no haber distancia real en la red ni consumo de ancho de banda, los efectos son mínimos en este entorno.
 
-[.text-center]
-image::assets/imagenes-vuln/1/UDPflood/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/1/UDPflood/tcpdump.png[Tcpdump,align=center]
 
 *Análisis del impacto con docker stats*
 
@@ -500,8 +478,7 @@ Al monitorear el servidor con docker stats, observamos un Net I/O de aproximadam
 
 Esto sugiere que el servidor está recibiendo una gran cantidad de paquetes, pero no está generando una respuesta significativa en términos de tráfico saliente. Esto confirma que, aunque el ataque está en marcha, en un entorno local no se logra un impacto real en el rendimiento del servidor.
 
-[.text-center]
-image::assets/imagenes-vuln/1/UDPflood/dockerstats.png[Dockerstats]
+image::assets/imagenes-vuln/1/UDPflood/dockerstats.png[Dockerstats,align=center]
 
 === 2. Ataques de Explotación de Vulnerabilidades
 
@@ -554,8 +531,7 @@ Este ataque ha sido exitoso en nuestro entorno; no solo impide el acceso a la p�
 
 Accedemos con nuestro perfil a la IP del servidor y nos debe salir lo siguiente:
 
-[.text-center]
-image::assets/imagenes-vuln/2/slowloris/conexion.png[ConexionError]
+image::assets/imagenes-vuln/2/slowloris/conexion.png[ConexionError,align=center]
 
 Esto nos indica que se ha realizado con exito el ataque DoS.
 
@@ -570,15 +546,13 @@ $ tcpdump -i eth0 -n port 80 and tcp[13] = 2
 
 Además, en las terminales donde ejecutamos Slowloris, podemos ver que la herramienta indica el envío del encabezado Keep-Alive a los sockets abiertos, lo que refuerza la persistencia de las conexiones.
 
-[.text-center]
-image::assets/imagenes-vuln/2/slowloris/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/2/slowloris/tcpdump.png[Tcpdump,align=center]
 
 *Análisis del impacto con docker stats*
 
 Por otro lado, al inspeccionar el consumo de recursos con docker stats, observamos que el contenedor del servidor está recibiendo 30GB en Net I/O, lo que representa un tráfico alto para un servidor web. Este consumo masivo de red sugiere que el servidor está siendo saturado con solicitudes, lo que contribuye a su caída.
 
-[.text-center]
-image::assets/imagenes-vuln/2/slowloris/dockerstats.png[Dockerstats]
+image::assets/imagenes-vuln/2/slowloris/dockerstats.png[Dockerstats,align=center]
 
 ==== b. Teardrop
 
@@ -684,27 +658,23 @@ Este ataque es bastante eficaz, como se está utilizando una IP local (nuestra r
 
 En Kali Linux, en la parte superior derecha, hay unos gráficos que muestran el uso de la CPU. Podemos observar cómo, durante el ataque, el gráfico comienza a reflejar un incremento en la carga del procesador. Esto indica que el servidor está procesando un número elevado de solicitudes, lo que confirma que el ataque está en curso.
 
-[.text-center]
-image::assets/imagenes-vuln/3/dns/kali.png[KaliGraphs]
+image::assets/imagenes-vuln/3/dns/kali.png[KaliGraphs,align=center]
 
 *Análisis con tcpdump*
 
 Utilizando tcpdump, se puede observar cómo las peticiones de las IPs de los servidores DNS están llegando a la red. Cada una de estas solicitudes genera una respuesta amplificada, lo que contribuye a la sobrecarga del ancho de banda y la congestión en la red local.
 
-[.text-center]
-image::assets/imagenes-vuln/3/dns/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/3/dns/tcpdump.png[Tcpdump,align=center]
 
 *Análisis con docker stats*
 
 Al consultar docker stats, se observa que no hay una carga significativa en los contenedores. Esto ocurre ya que el ataque está afectando principalmente el ancho de banda de la red local, y no la carga de los servicios dentro de los contenedores.
 
-[.text-center]
-image::assets/imagenes-vuln/3/dns/dockerstats.png[Dockerstats]
+image::assets/imagenes-vuln/3/dns/dockerstats.png[Dockerstats,align=center]
 
 Un buen ejemplo de cómo el ataque afecta la funcionalidad de la red es al intentar realizar una actualización de paquetes con apt. Durante el ataque, se observa que la actualización no puede completarse, ya que los paquetes necesarios para la actualización no llegan debido a la congestión en la red.
 
-[.text-center]
-image::assets/imagenes-vuln/3/dns/updateError.png[UpdateError]
+image::assets/imagenes-vuln/3/dns/updateError.png[UpdateError,align=center]
 
 ==== b. NTP Amplification
 
@@ -759,8 +729,7 @@ Aunque este ataque suele ser efectivo, no alcanza la misma potencia que el anter
 
 Podemos observar cómo los paquetes llegan a nuestro contenedor, de manera similar al ataque anterior.
 
-[.text-center]
-image::assets/imagenes-vuln/3/ntp/kali.png[KaliGraphs]
+image::assets/imagenes-vuln/3/ntp/kali.png[KaliGraphs,align=center]
 
 *Análisis con tcpdump*
 
@@ -771,8 +740,7 @@ Además, con tcpdump podemos ver que se han capturado 1500 paquetes de un total 
 tcpdump -i eth0 port 123 -vv
 ----
 
-[.text-center]
-image::assets/imagenes-vuln/3/ntp/tcpdump.png[Tcpdump]
+image::assets/imagenes-vuln/3/ntp/tcpdump.png[Tcpdump,align=center]
 
 A pesar de esto, seguimos teniendo acceso a todos los servicios sin interrupciones, lo que indica que el ataque no es lo suficientemente fuerte en este caso. La red local tiene suficiente capacidad para absorber el tráfico y el ataque no está generando suficiente tráfico porque el número de threads y el tiempo son insuficientes.
 
@@ -909,8 +877,7 @@ $ sudo rudy -t "http://(IP)/formulario.php" -d 5 -n 500 -m "POST"
 
 En este ataque, podemos observar un efecto inmediato en nuestro formulario, ya que el servidor devuelve un error 500 (Internal Server Error). Esto ocurre porque se han agotado los recursos del servidor debido al envío de solicitudes HTTP POST extremadamente lentas, manteniendo las conexiones abiertas sin cerrarlas. Como resultado, el servidor queda saturado al intentar procesar todas las conexiones simultáneamente, lo que puede provocar la interrupción del servicio.
 
-[.text-center]
-image::assets/imagenes-vuln/4/RUDY/error500.png[Error500]
+image::assets/imagenes-vuln/4/RUDY/error500.png[Error500,align=center]
 
 *Análisis con tcpdump*
 
@@ -921,10 +888,7 @@ Por otro lado, mediante tcpdump, podemos capturar y analizar el tráfico generad
 sudo tcpdump -i eth0 port 80 -A | grep -i "POST"
 ----
 
-[.text-center]
-image::assets/imagenes-vuln/4/RUDY/tcpdump.png[Tcpdump]
-
-<<<
+image::assets/imagenes-vuln/4/RUDY/tcpdump.png[Tcpdump,align=center]
 
 == ¿Cómo prevenir?
 
