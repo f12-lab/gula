@@ -1,7 +1,6 @@
-# Usar Debian ligero como base
 FROM debian:bullseye-slim
 
-# Actualizar e instalar herramientas necesarias en una sola capa
+# Actualizar e instalar herramientas necesarias
 RUN apt-get update && apt-get install -y \
     hping3 \
     siege \
@@ -16,8 +15,7 @@ RUN apt-get update && apt-get install -y \
     nmap \
     tcpdump \
     wget \
-    gcc && \
-    rm -rf /var/lib/apt/lists/*  # Limpiar caché de APT para reducir tamaño
+    gcc && 
 
 # Clonar repositorios
 WORKDIR /root
