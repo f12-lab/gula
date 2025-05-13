@@ -1,5 +1,0 @@
-FROM php:8.2-fpm
-
-COPY ./src/nginx/tienda /usr/share/nginx/html
-
-CMD ["php-fpm"]
