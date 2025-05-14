@@ -23,7 +23,7 @@ services:
       - net.core.somaxconn=128
       - net.ipv4.tcp_timestamps=1
   php-fpm:
-    image: php:8.2-fpm
+    image: php:latest
     container_name: php-fpm
     networks:
       custom_network:
