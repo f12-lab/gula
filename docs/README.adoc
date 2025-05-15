@@ -68,7 +68,7 @@ Una solicitud ICMP requiere algunos recursos del servidor para procesar cada sol
 
 . A continuación, el servidor objetivo envía un paquete de respuesta de eco de ICMP a la dirección IP de cada dispositivo solicitante como respuesta.
 
-image::assets/ping-icmp.png[ICMP flood,align=center]
+image::assets/ping-icmp.png[ICMP flood,width=540,align=center]
 
 ==== b. SYN Flood
 
@@ -76,7 +76,7 @@ En este caso se envian repetidamente paquetes de solicitud de conexión inicial 
 
 Este ataque aprovecha el proceso de las conexiones TCP. Como ya sabemos, en una situación normal se producen los siguientes procesos:
 
-image::assets/syn-flood-1.png[Conexión TCP,align=center]
+image::assets/syn-flood-1.png[Conexión TCP,width=380,align=center]
 
 En un ataque se aprovecha el hecho de que, después de que se ha recibido un paquete SYN inicial, el servidor responderá con uno o más paquetes SYN/ACK y esperará el paso final del protocolo de enlace. Así es como funciona:
 
@@ -86,7 +86,7 @@ En un ataque se aprovecha el hecho de que, después de que se ha recibido un paq
     
 . Mientras el servidor espera a que llegue el paquete ACK final, el cual nunca llegará, el atacante sigue enviando más paquetes SYN. La llegada de cada nuevo paquete SYN hace que el servidor mantenga temporalmente abierta una nueva conexión de puerto durante cierta cantidad de tiempo y, una vez que se hayan utilizado todos los puertos disponibles, el servidor ya no puede funcionar con normalidad, llevándolo a su sobrecarga.
 
-image::assets/syn-flood-2.png[SYN flood,align=center]
+image::assets/syn-flood-2.png[SYN flood,width=380,align=center]
 
 También hay varios formas de llevarlo a cabo:
 
@@ -106,7 +106,7 @@ De normal, un servidor responde a un paquete UDP enviado a uno de sus puertos de
 
 Entoces, si tiene que realizar este proceso para una petición, podemos llegar a imaginar que ocurre si se envían muchas peticiones. Como resultado de que el servidor víctima utiliza recursos para comprobar y luego responder a cada paquete UDP recibido, los recursos del objetivo pueden agotarse muy rápido cuando se recibe una gran avalancha de paquetes UDP, lo que provoca una denegación de servicio al tráfico normal.
 
-image::assets/udp-flood.png[UDP Flood,align=center]
+image::assets/udp-flood.png[UDP Flood,width=580,align=center]
 
 === 2. Ataques de Explotación de Vulnerabilidades
 
@@ -130,7 +130,7 @@ Este ataque se produce en 4 pasos:
 
 . El servidor objetivo nunca es capaz de liberar ninguna de las conexiones parciales abiertas mientras espera a que termine la solicitud. Una vez que todos los hilos disponibles están en uso, el servidor será incapaz de responder a las solicitudes adicionales realizadas desde el tráfico regular, provocando una denegación de servicio.
 
-image::assets/Slowloris.jpg[Slowloris,align=center]
+image::assets/Slowloris.jpg[Slowloris,width=380,align=center]
 
 ==== b. Teardrop Attack
 
@@ -142,7 +142,7 @@ Entonces durante un ataque Teardrop, el ciberdelincuente inyecta un error en el 
 
 Este ataque afectaba principalmente a sistemas antiguos como Windows 95, NT y algunas versiones de Linux
 
-image::assets/Teardrop.jpg[Teardrop,align=center]
+image::assets/Teardrop.jpg[Teardrop,width=380,align=center]
 
 ==== c. Ping of Death (PoD)
 
@@ -150,7 +150,7 @@ Este ataque es el precursos del *Ping flood* visto anteriormente. Consiste en el
 
 Estos paquetes son superior a 65,535 bytes, lo que provoca errores de reensamblaje en sistemas antiguos y puede causar fallos del sistema o reinicios. Este ataque aprovecha vulnerabilidades específicas en el manejo de fragmentación de paquetes de ciertos sistemas operativos más antiguos.
 
-image::assets/ping-of-death.png[PoD,align=center]
+image::assets/ping-of-death.png[PoD,width=380,align=center]
 
 === 3. Ataques de Amplificación y Reflexión
 
@@ -172,7 +172,7 @@ Este ataque se ejecuta de la siguiente manera:
 
 . La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve inundada por una avalancha de tráfico, produciendo la denegación de servicio.
 
-image::assets/dns-amplification.png[DNS Amplification,align=center]
+image::assets/dns-amplification.png[DNS Amplification,width=540,align=center]
 
 ==== b. NTP Amplification
 
@@ -190,7 +190,7 @@ Este ataque se realiza de la siguiente manera:
 
 . La dirección IP del servidor recibe la respuesta y la infraestructura de red asociada se ve sobrecargada por la avalancha de tráfico, con la consiguiente denegación de servicio.
 
-image::assets/ntp-amplification.png[NTP Amplification,align=center]
+image::assets/ntp-amplification.png[NTP Amplification,width=620,align=center]
 
 ==== c. Memcached Amplification
 
@@ -248,7 +248,7 @@ Un ataque R.U.D.Y. se realiza en los siguientes pasos:
 
 . La herramienta sigue enviando datos de forma indefinida. El servidor web mantendrá la conexión abierta para aceptar los paquetes, ya que el comportamiento del ataque es similar al de un usuario con una velocidad de conexión lenta que envía datos de un formulario. Entretanto, se ve afectada la capacidad del servidor web para manejar el tráfico legítimo, por lo que termina saturándose.
 
-image::assets/RUDY.jpg[RUDY,align=center]
+image::assets/RUDY.jpg[RUDY,width=540,align=center]
 
 == Solucionar la máquina
 
@@ -354,7 +354,7 @@ Si ejecutamos el ataque y analizamos el tráfico desde el servidor Nginx con tcp
 $ tcpdump -i eth0 icmp
 ----
 
-image::assets/imagenes-vuln/1/Pingflood/tcpdump.png[Tcpdump,align=center]
+image::assets/imagenes-vuln/1/Pingflood/tcpdump.png[Tcpdump,width=540,align=center]
 
 En los resultados, observamos que solo 481825 paquetes han sido capturados de un total de 7786662 paquetes filtrados, el resto ha sido descartado por el kernel.
 
@@ -409,7 +409,7 @@ Para comprobar si el ataque ha tenido éxito, intentamos acceder a la IP del ser
 
 Es importante limpiar la caché del navegador o usar un perfil nuevo para evitar datos almacenados. (Esta recomendación puede incluirse en la parte de despliegue del documento).
 
-image::assets/imagenes-vuln/1/SYNflood/cargando.png[Cargando,align=center]
+image::assets/imagenes-vuln/1/SYNflood/cargando.png[Cargando,width=740,align=center]
 
 Como podemos ver, el servidor no responde y la página no carga. Esto indica que el ataque ha sido exitoso y está afectando la disponibilidad del servicio.
 
@@ -470,7 +470,7 @@ $ tcpdump -i any udp
 
 Esto indica que el ataque se está ejecutando correctamente y que los paquetes están llegando al servidor. Sin embargo, al no haber distancia real en la red ni consumo de ancho de banda, los efectos son mínimos en este entorno.
 
-image::assets/imagenes-vuln/1/UDPflood/tcpdump.png[Tcpdump,align=center]
+image::assets/imagenes-vuln/1/UDPflood/tcpdump.png[Tcpdump,width=600,align=center]
 
 *Análisis del impacto con docker stats*
 
@@ -658,7 +658,7 @@ Este ataque es bastante eficaz, como se está utilizando una IP local (nuestra r
 
 En Kali Linux, en la parte superior derecha, hay unos gráficos que muestran el uso de la CPU. Podemos observar cómo, durante el ataque, el gráfico comienza a reflejar un incremento en la carga del procesador. Esto indica que el servidor está procesando un número elevado de solicitudes, lo que confirma que el ataque está en curso.
 
-image::assets/imagenes-vuln/3/dns/kali.png[KaliGraphs,align=center]
+image::assets/imagenes-vuln/3/dns/kali.png[KaliGraphs,width=340,align=center]
 
 *Análisis con tcpdump*
 
@@ -815,6 +815,8 @@ $ sudo python3 impulse.py --method MEMCACHED --time 200 --threads 15 --target (I
 
 Por desgracia, no dispongo de un servidor memcached, pero podemos ver una prueba hacia un servidor real: https://www.youtube.com/watch?v=7oozYx9AfPM[video]
 
+<<<
+
 === 4. Ataques Lógicos o de Estado
 
 ==== a. HTTP Flood
@@ -831,7 +833,7 @@ Para este tipo de ataques hay varias herramientas, de hecho ya vimos una que es 
 
 * *https://sourceforge.net/projects/torshammer/[Tor's Hammer]* -> Diseñada para realizar ataques de denegación de servicio a través de la red Tor, esta herramienta envía solicitudes POST lentas para mantener abiertas las conexiones y agotar los recursos del servidor. 
 
-* *https://github.com/epsylon/ufonet[UFONet]* -> Es una herramienta DDoS que utiliza 'zombies' o bots para crear ataques masivos. Permite realizar ataques de inundación HTTP y otros métodos, aprovechando vulnerabilidades en servidores web. 
+* *https://github.com/epsylon/ufonet[UFONet]* -> Es una herramienta DDoS que utiliza bots para crear ataques masivos. Permite realizar ataques de inundación HTTP y otros métodos aprovechando vulnerabilidades web.
 
 Algunas de estas herramientas pueden no ser muy eficaces actualmente como puede ser LOIC, HOIC, HULK. Pero por otra parte tenemos herramientas que pueden ser utiles en la actualidad como Slowloris, Tor's Hammer, UFONet.
 
@@ -877,18 +879,18 @@ $ sudo rudy -t "http://(IP)/formulario.php" -d 5 -n 500 -m "POST"
 
 En este ataque, podemos observar un efecto inmediato en nuestro formulario, ya que el servidor devuelve un error 500 (Internal Server Error). Esto ocurre porque se han agotado los recursos del servidor debido al envío de solicitudes HTTP POST extremadamente lentas, manteniendo las conexiones abiertas sin cerrarlas. Como resultado, el servidor queda saturado al intentar procesar todas las conexiones simultáneamente, lo que puede provocar la interrupción del servicio.
 
-image::assets/imagenes-vuln/4/RUDY/error500.png[Error500,align=center]
+image::assets/imagenes-vuln/4/RUDY/error500.png[Error500,width=320,align=center]
 
 *Análisis con tcpdump*
 
-Por otro lado, mediante tcpdump, podemos capturar y analizar el tráfico generado durante el ataque. Esto nos permite verificar que todas las solicitudes están llegando al servidor. Podemos ver en tiempo real cómo las solicitudes POST se transmiten de manera fragmentada, lo que confirma el efecto del ataque
+Por otro lado, mediante tcpdump, podemos capturar y analizar el tráfico generado durante el ataque. Esto nos permite verificar que todas las solicitudes están llegando al servidor. Podemos ver en tiempo real cómo las solicitudes POST se transmiten de manera fragmentada, lo que confirma el efecto del ataque.
 
 [source,bash]
 ----
 sudo tcpdump -i eth0 port 80 -A | grep -i "POST"
 ----
 
-image::assets/imagenes-vuln/4/RUDY/tcpdump.png[Tcpdump,align=center]
+image::assets/imagenes-vuln/4/RUDY/tcpdump.png[Tcpdump,width=500,align=center]
 
 == ¿Cómo prevenir?
 
